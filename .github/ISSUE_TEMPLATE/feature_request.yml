@@ -1,0 +1,14 @@
+name: Feature request
+description: A new component, tool or editor feature
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What would you like Silica to do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What would you build with it?

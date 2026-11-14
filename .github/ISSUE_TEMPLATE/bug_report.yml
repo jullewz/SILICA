@@ -1,0 +1,24 @@
+name: Bug report
+description: A circuit behaves wrongly, or the editor misbehaves
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened and what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: circuit
+    attributes:
+      label: The circuit
+      description: Attach the .silica.json file (Save button) or paste a Share link.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Browser (or Node version) and operating system
+      placeholder: "Chrome 131 on Windows 10"
+    validations:
+      required: true
