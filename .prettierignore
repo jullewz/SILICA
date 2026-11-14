@@ -1,0 +1,5 @@
+dist
+site
+node_modules
+docs/assets
+*.md

@@ -1,0 +1,55 @@
+{
+  "name": "silica-logic",
+  "version": "0.1.0",
+  "description": "A digital logic simulator in your browser: gates, flip-flops, buses, memory and subcircuits, up to a working 8-bit CPU.",
+  "type": "module",
+  "license": "MIT",
+  "author": "jullewz (https://github.com/jullewz)",
+  "homepage": "https://github.com/jullewz/silica",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jullewz/silica.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jullewz/silica/issues"
+  },
+  "keywords": [
+    "logic",
+    "circuit",
+    "simulator",
+    "digital",
+    "electronics",
+    "cpu",
+    "education",
+    "canvas",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "silica": "dist/src/cli/silica.js"
+  },
+  "files": [
+    "dist/src",
+    "index.html",
+    "styles.css",
+    "examples"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "start": "npm run build && node scripts/serve.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "npm run build && node --test \"dist/tests/**/*.test.js\"",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "site": "npm run build && node scripts/build-site.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^6.0.0"
+  }
+}

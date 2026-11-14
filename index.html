@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Silica · digital logic simulator</title>
+    <meta
+      name="description"
+      content="Build and run digital circuits in your browser: gates, flip-flops, buses, memory, subcircuits, up to a working 8-bit CPU."
+    />
+    <meta name="color-scheme" content="dark" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0f'/%3E%3Cpath d='M8 9h8a7 7 0 0 1 0 14H8z' fill='none' stroke='%23c084fc' stroke-width='2.5'/%3E%3Cpath d='M3 12h5M3 20h5M23 16h6' stroke='%23c084fc' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">
+        <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+          <path d="M8 9h8a7 7 0 0 1 0 14H8z" fill="none" stroke="currentColor" stroke-width="2.5" />
+          <path d="M3 12h5M3 20h5M23 16h6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+        </svg>
+        <span class="name">silica</span>
+      </div>
+      <div class="group">
+        <select id="examples" aria-label="Open an example">
+          <option value="">Examples…</option>
+        </select>
+        <button id="new" title="New project">New</button>
+        <button id="open" title="Open a project file">Open</button>
+        <button id="save" title="Download this project as a file">Save</button>
+        <button id="share" title="Copy a link that contains this project">Share</button>
+        <input id="file" type="file" accept=".json,application/json" hidden />
+      </div>
+      <div class="group">
+        <button id="undo" title="Undo (Ctrl+Z)">↶</button>
+        <button id="redo" title="Redo (Ctrl+Shift+Z)">↷</button>
+      </div>
+      <div class="group sim">
+        <button id="run" class="primary" title="Run the clock (Space)">▶ Run</button>
+        <button id="tick" title="One clock tick (.)">Tick</button>
+        <button id="cycle" title="One full clock cycle (,)">Cycle</button>
+        <button id="reset" title="Reset every part to its starting state">Reset</button>
+        <label class="speed"
+          >speed <input id="speed" type="range" min="0" max="7" value="3" /> <span id="speed-label">8 Hz</span></label
+        >
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="palette" id="palette" aria-label="Components"></aside>
+
+      <main class="stage">
+        <nav class="tabs" id="tabs" aria-label="Circuits"></nav>
+        <div class="canvas-wrap" id="wrap">
+          <canvas id="canvas" tabindex="0" aria-label="Circuit editor"></canvas>
+          <div class="hint" id="hint"></div>
+        </div>
+        <section class="bottom">
+          <div class="btabs" role="tablist">
+            <button role="tab" data-panel="timing" aria-selected="true">Timing diagram</button>
+            <button role="tab" data-panel="table" aria-selected="false">Truth table</button>
+            <button role="tab" data-panel="expr" aria-selected="false">Expression → circuit</button>
+            <span class="status" id="status"></span>
+          </div>
+          <div class="bpanel" id="panel-timing"><canvas id="timing"></canvas></div>
+          <div class="bpanel" id="panel-table" hidden>
+            <div class="row">
+              <button id="build-table">Build truth table</button>
+              <span class="muted" id="table-note">Uses the input and output pins of the open circuit.</span>
+            </div>
+            <div class="table-scroll" id="table-out"></div>
+          </div>
+          <div class="bpanel" id="panel-expr" hidden>
+            <div class="row">
+              <input
+                id="expr"
+                type="text"
+                spellcheck="false"
+                value="a & !b | b & c | !a & !c"
+                aria-label="Boolean expression"
+              />
+              <button id="build-expr" class="primary">Build circuit</button>
+            </div>
+            <div class="expr-out" id="expr-out"></div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="props" id="props" aria-label="Properties"></aside>
+    </div>
+    <div id="toast" class="toast" hidden></div>
+    <script type="module" src="dist/src/ui/app.js"></script>
+  </body>
+</html>
